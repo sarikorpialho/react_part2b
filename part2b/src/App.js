@@ -1,29 +1,41 @@
 import React, { useState } from 'react'
-import Person from './component/Person';
+import Person from './component/Person'
+import axios from 'axios'
 
 
 const App = (props) => {
   const [persons, setPerson] = useState(props.persons)
-  const [newPerson, setNewPerson] = useState(
-    ''
-  ) 
+  const [newPerson, setNewPerson] = useState('') 
+  const [newNumber, setNewNumber] = useState('')
 
 const addPerson = (event) => {
   event.preventDefault()
-  const personNew = {
-    name: newPerson,
-    id: persons.length + 1
+  console.log('button Clicked',event.target)
+  console.log("New name", newPerson)
+ 
+  let checkName = persons.filter(person => (person.name === newPerson))
+  if(checkName.length === 0){
+    const personNew = {
+      name: newPerson,
+      number: newNumber,
+      id: persons.length + 1
+    }
+    setPerson(persons.concat(personNew))
+  } else if (checkName.length !== 0) {
+    alert(`${newPerson} is already added to phonebook`);
   }
-  setPerson(persons.concat(personNew))
   setNewPerson('')
+  setNewNumber('')
 }
 
-    const handlePersonChange = (event) => {
-      console.log(event.target.value)
-      setNewPerson(event.target.value)
+const handlePersonChange = (event) => {
+  console.log(event.target.value)
+  setNewPerson(event.target.value)
+  }
+  const handleNumberChange = (event) => {
+    console.log(event.target.value)
+    setNewNumber(event.target.value)
     }
- 
-
   
     return (
       <div>
@@ -34,6 +46,13 @@ const addPerson = (event) => {
         <input
           value={newPerson}
           onChange={handlePersonChange}
+        />
+        </div>
+        <div>
+            numero:
+        <input
+          value={newNumber}
+          onChange={handleNumberChange}
         />
         </div>
         <div>
