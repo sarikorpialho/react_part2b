@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Person from './component/Person'
-import axios from 'axios'
+import personService from './services/persons.js'
 
 
 const App = (props) => {
@@ -9,15 +9,14 @@ const App = (props) => {
   const [newNumber, setNewNumber] = useState('')
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPerson(response.data)
+    personService
+      .getAll()
+        .then(initialPerson => {
+        setPerson(initialPerson)
       })
   }, [])
-  console.log('render', persons.length, 'persons')
+  //console.log('render', persons.length, 'persons')
+ 
 
 const addPerson = (event) => {
   event.preventDefault()
@@ -30,18 +29,32 @@ const addPerson = (event) => {
       name: newPerson,
       number: newNumber
     }
+  
+
+    personService
+      .create(personNew)
+      .then(returnedPerson => {
+        setPerson(persons.concat(returnedPerson))
+        setNewPerson('')
+        setNewNumber('')
+      })
+    } else if (checkName.length !== 0) {
+      alert(`${newPerson} is already added to phonebook`);
+    }
+   
+  }
     //setPerson(persons.concat(personNew))
-    axios
+   /* axios
     .post('http://localhost:3001/persons', personNew)
     .then(response => {
       setPerson(persons.concat(response.data))
-    })
-  } else if (checkName.length !== 0) {
+    })*/
+ /* } else if (checkName.length !== 0) {
     alert(`${newPerson} is already added to phonebook`);
   }
   setNewPerson('')
   setNewNumber('')
-}
+}*/
 /*const deleteContactOf = id => {
   const contact = persons.find(n => n.id === id)
   if(contact == true){

@@ -9,6 +9,26 @@
       "id": 2,
       "name": "Taina Hyvönen",
       "number": "050"
+    },
+    {
+      "name": "Tiina",
+      "number": "050",
+      "id": 3
+    },
+    {
+      "name": "julia",
+      "number": "040",
+      "id": 4
+    },
+    {
+      "name": "Ville",
+      "number": "070",
+      "id": 5
+    },
+    {
+      "name": "Arto",
+      "number": "040",
+      "id": 6
     }
   ]
 }
