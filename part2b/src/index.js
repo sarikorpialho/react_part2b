@@ -2,12 +2,9 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import App from './App'
 
-import axios from 'axios'
 
-axios.get('http://localhost:3001/persons').then(response => {
-  const persons = response.data
   ReactDOM.render(
-    <App persons={persons} />,
+    <App />,
     document.getElementById('root')
   )
-})
+

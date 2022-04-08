@@ -43,18 +43,7 @@ const addPerson = (event) => {
     }
    
   }
-    //setPerson(persons.concat(personNew))
-   /* axios
-    .post('http://localhost:3001/persons', personNew)
-    .then(response => {
-      setPerson(persons.concat(response.data))
-    })*/
- /* } else if (checkName.length !== 0) {
-    alert(`${newPerson} is already added to phonebook`);
-  }
-  setNewPerson('')
-  setNewNumber('')
-}*/
+
 /*const deleteContactOf = id => {
   const contact = persons.find(n => n.id === id)
   if(contact == true){
